@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/goods.css" />
+	</head>
+	<body>
+		<div>
+			<p class="col-xs-offset-1 add-title">添加商品</p>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品名称：</label>
+					<div class="col-xs-8">
+						<input name="name" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品品牌：</label>
+					<div class="col-xs-8">
+						<input name="brand" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品型号：</label>
+					<div class="col-xs-8">
+						<input name="type" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">作品名：</label>
+					<div class="col-xs-8">
+						<input name="derive" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">发售日期：</label>
+					<div class="col-xs-8">
+						<input name="date" class="form-control" type="date" placeholder="请输入开始时间"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">价格：</label>
+					<div class="col-xs-8">
+						<input name="price" type="number" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">原型制作：</label>
+					<div class="col-xs-8">
+						<input name="prototype" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品类别：</label>
+					<div class="col-xs-8">
+						<input name="category" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">适用年龄：</label>
+					<div class="col-xs-8">
+						<input name="age" type="number" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">比例：</label>
+					<div class="col-xs-8">
+						<input name="ratio" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品发售图片：</label>
+					<div class="col-xs-8 upload-div">
+						<ul class="upload-lists clearfix">
+							
+							<li class="upload-list upload attr">
+								+
+								<input multiple="multiple" accept="image/*" name="attr" type="file" />
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品展示图片：</label>
+					<div class="col-xs-8 upload-div">
+						<ul class="upload-lists clearfix">
+							
+							<li class="upload-list upload goodsImg">
+								+
+								<input multiple="multiple" accept="image/*" name="goodsImg" type="file" />
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品状态：</label>
+					<div class="col-xs-8">
+						<select name="status" class="form-control">
+							<option ></option>
+							<option value="1">上线</option>
+							<option value="0">下线</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label">商品限购：</label>
+					<div class="col-xs-8">
+						<select name="limitation" class="form-control">
+							<option value="0">不限购</option>
+							<option value="1">1</option>
+							<option value="3">3</option>
+							<option value="5">5</option>
+							<option value="10">10</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label"></label>
+					<div class="col-xs-8">
+						<a href="goods.html" class="btn btn-default">取消</a>
+						<a class="btn btn-primary goods-submit">确定</a>
+					</div>
+				</div>
+				</form>
+		</div>
+	</body>
+</html>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	var fileLists=[]
+	var fileLists1=[]
+	// getClass()
+	
+	//选择图片操作   图片预览
+	$('[name=goodsImg]').change(function(){
+		var fileList=this.files;
+		$.each(fileList,function(index,item){
+			fileLists.unshift(item)
+			var fileReader=new FileReader();
+			fileReader.readAsDataURL(item)
+			fileReader.onload=function(event){
+				var html=`
+				<li class="upload-list add">
+					<a class="close">X</a>
+					<img class="upload-img" src="${event.target.result}">
+				</li>
+				`
+				$('.upload-list.upload.goodsImg').before(html)
+				console.log(event)
+			}
+			console.log(fileLists)
+		})
+	})
+	
+	$('[name=attr]').change(function(){
+		var fileList=this.files;
+		$.each(fileList,function(index,item){
+			fileLists1.unshift(item)
+			var fileReader=new FileReader();
+			fileReader.readAsDataURL(item)
+			fileReader.onload=function(event){
+				var html=`
+				<li class="upload-list add">
+					<a class="close">X</a>
+					<img class="upload-img" src="${event.target.result}">
+				</li>
+				`
+				$('.upload-list.upload.attr').before(html)
+				console.log(event)
+			}
+			console.log(fileLists1)
+		})
+	})
+	
+	//删除上传的图片
+	$('.upload-lists').on('click','.close',function(){
+		//删除预览的图片  并且 要删除存储在fileLists中的图片
+		//找到当前在fileLists中的下标  删除当前下标位置的图片
+		var parent =$(this).closest('.upload-list')
+		var img1 =parent.siblings('.upload-list.upload')
+		var img2 =img1.children('input')
+		var index=parent.index()
+		if(img2.attr('name')=='goodsImg'){
+			fileLists.splice(index,1)
+			console.log(111)
+		}
+		if(img2.attr('name')=='attr'){
+			fileLists1.splice(index,1)
+			console.log(222)
+		}
+		parent.remove()
+	})
+	
+	//发送请求添加商品
+	//商品名称、商品分类、商品状态、商品图片、上传时间
+	$('.goods-submit').click(function(){
+		//formdata形式上传
+		var createTime=String(new Date().getTime())
+		var form=document.querySelector('form')
+		var formdata=new FormData(form);
+		formdata.append('createTime',createTime)
+		// for(var i=1;i<fileLists.length;i++){
+		// 	formdata.append('goodsImg',fileLists[i])
+		// 	formdata.append('attr',fileLists[i])
+		// }
+		
+		//发送请求后台数据
+		$.ajax({
+			url: api + 'addGoods',
+			type: 'post',
+			data: formdata,
+			dataType:'json',
+			processData: false,
+			contentType: false,
+			success: function(res) {
+				if(res.status==200){
+					window.location.href='goods.html'
+				}
+			}
+		})
+		
+	})
+	
+	// //请求页面所有的分类数据并渲染到下拉框中
+	// function getClass(){
+	// 	$.ajax({
+	// 		url:api+'getAllClass',
+	// 		type:'post',
+	// 		dataType:'json',
+	// 		success:function(res){
+	// 			if(res.status==200){
+	// 				//循环返回的数据并渲染到页面是
+	// 				$.each(res.list,function(index,item){
+	// 					$('select[name=class]').append('<option value="'+item.id+'">'+item.class_name+'</option>')
+	// 				})
+	// 			}
+	// 		}
+	// 	})
+	// }
+</script>

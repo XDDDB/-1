@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/goods.css" />
+	</head>
+	<body>
+		<div>
+			<p class="col-xs-offset-1 add-title">新增新闻</p>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-xs-2 control-label">新闻标题：</label>
+					<div class="col-xs-8">
+						<input name="title" type="text" class="form-control">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-xs-2 control-label">新闻内容：</label>
+					<div class="col-xs-8">
+						<textarea class="form-control" name="content" rows="10"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-xs-2 control-label">新闻作者：</label>
+					<div class="col-xs-8">
+						<input name="author" type="text" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-2 control-label"></label>
+					<div class="col-xs-8">
+						<a href="journalism.html" class="btn btn-default">取消</a>
+						<a class="btn btn-primary journalism-submit">确定</a>
+					</div>
+				</div>
+				</form>
+		</div>
+	</body>
+</html>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	var fileLists=[]
+	
+	//发送请求添加商品
+	//商品名称、商品分类、商品状态、商品图片、上传时间
+	$('.journalism-submit').click(function(){
+		//formdata形式上传
+		var createTime=String(new Date().getTime())
+		var form=document.querySelector('form')
+		var formdata=new FormData(form);
+		formdata.append('createTime',createTime)
+		
+		//发送请求后台数据
+		$.ajax({
+			url: api + 'addJournalism',
+			type: 'post',
+			data: formdata,
+			dataType:'json',
+			processData: false,
+			contentType: false,
+			success: function(res) {
+				if(res.status==200){
+					window.location.href='journalism.html'
+				}
+			}
+		})
+		
+	})
+	
+</script>

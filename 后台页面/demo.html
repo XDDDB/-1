@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/demo.css" />
+	</head>
+	<body>
+		<div class="header-a">
+		<div class="header"></div>
+		</div>
+		<div class="container-fluid">
+			<ul class="container-left">
+				<div class="container-left-a"></div>
+				<a href="demo.html">
+					<li class="list active">分类管理</li>
+				</a>
+				<a href="goods.html">
+					<li class="list ">商品管理</li>
+				</a>
+				<a href="dingdan.html">
+					<li class="list">订单管理</li>
+				</a>
+				<a href="user.html">
+					<li class="list ">会员管理</li>
+				</a>
+				<a href="journalism.html">
+					<li class="list ">新闻管理</li>
+				</a>
+			</ul>
+			<div class="container-right">
+				<a class="btn btn-primary modal-show">新增分类</a>
+
+				<table class="container-table table table-striped">
+					<thead>
+					<tr>
+						<th>分类名称</th>
+						<th>分类图片</th>
+						<th>分类状态</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tr>
+						<td>123</td>
+						<td>
+							<img src="">
+						</td>
+						<td>上线/下线</td>
+						<td>
+							<a>编辑</a>
+							<a>详情</a>
+							<a>删除</a>
+						</td>
+					</tr>
+				</table>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<li class="page-btn prev">
+							<a aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="active page-index"><a>1</a></li>
+						<li class="page-index"><a>2</a></li>
+						<li class="page-index"><a>3</a></li>
+						<li class="page-index"><a>4</a></li>
+						<li class="page-index"><a>5</a></li>
+						<li class="page-btn next">
+							<a aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+						<li>
+							<select class="page-size">
+								<option>2</option>
+								<option>5</option>
+								<option>8</option>
+							</select>
+						</li>
+						<li>
+							<input type="number" name="page-index" />
+							<button class="page-submit">跳转</button>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<div class="modal fade modal-add">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="glyphicon glyphicon-remove" data-dismiss="modal" data-target="modal-add"></span>
+						<h4 class="modal-title">新增</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal form-add">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类名称</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name='name' />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类分类</label>
+								<div class="group-item">
+									<div class="upload">
+										+
+										<img class="upload-img" src="QQ.png">
+										<input accept="image/*" type="file" class="img-upload" name='img' />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类状态</label>
+								<div class="group-item">
+									<select name='status'>
+										<option value="1">上线</option>
+										<option value="0">下线</option>
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default">取消</a>
+						<a class="btn btn-primary modal-submit">新增</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade modal-edit">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="glyphicon glyphicon-remove" data-dismiss="modal" data-target="modal-edit"></span>
+						<h4 class="modal-title">编辑</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal form-edit">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类名称</label>
+								<div class="col-sm-8">
+									<!-- <input name='id' type="hidden"> -->
+									<input type="text" class="form-control" name='name' />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类分类</label>
+								<div class="group-item">
+									<div class="upload">
+										+
+										<img class="upload-img" src="QQ.png">
+										<input accept="image/*" type="file" class="img-upload" name='img' />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">分类状态</label>
+								<div class="group-item">
+									<select name='status'>
+										<option value="1">上线</option>
+										<option value="0">下线</option>
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default">取消</a>
+						<a class="btn btn-primary modal-edit-btn">编辑</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade modal-ts">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">提示</h4>
+					</div>
+					<div class="modal-body">
+						<div>编辑成功</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" data-dismiss="modal">确定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade modal-xz">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">提示</h4>
+					</div>
+					<div class="modal-body">
+						<div>新增成功</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" data-dismiss="modal">确定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//翻页需要的公共变量
+	//total为总页数
+	//pageSize 当前页面显示的条数
+	//current  为当前页码数
+	var current = 1;
+	var pageSize = 2;
+	var total = 0;
+	var api = 'http://localhost:3000/'
+	getClassList();
+
+	//给翻页加点击事件
+	$('.pagination').on('click', '.page-index', function() {
+		var index = $(this).data('index')
+		current = index;
+		getClassList()
+	})
+
+	//上下翻页
+	$('.page-btn').click(function() {
+		//判断点击是上一页还是下一页
+		if ($(this).hasClass('prev')) {
+			//上一页
+			if (current > 1) {
+				current--
+				getClassList()
+			}
+		} else {
+			if (current < total) {
+				//下一页
+				current++
+				getClassList()
+			}
+		}
+
+	})
+
+	//输入翻页
+	$('.page-submit').click(function() {
+		var pageValue = $('[name=page-index]').val()
+		if (pageValue !== '0' && !pageValue) return false;
+		pageValue = Number(pageValue)
+		if (pageValue < 1) pageValue = 1;
+		if (pageValue > total) pageValue = total;
+		current = pageValue
+		getClassList()
+		$('[name=page-index]').val('')
+	})
+
+	//改变页面的显示条数
+	$('.page-size').change(function() {
+		pageSize = $(this).val()
+		getClassList()
+	})
+
+	//编辑数据 动态添加
+	$('.container-table').on('click', '.edit', function() {
+		//点击当前类编辑获取的id
+		var id = $(this).data('id')
+		$('.modal-edit-btn').data('id', id)
+		var currentData = {}
+		$.each(classList, function(index, item) {
+			if (item.id == id) {
+				currentData = item
+				$('.modal-edit [name=name]').val(currentData.class_name)
+				$('.modal-edit [name=status]').val(currentData.class_status)
+				//插入图片
+				if (currentData.img) {
+					$('.modal-upload-img ').attr('src', api + currentData.img).show()
+				}
+			}
+		})
+		$('.modal-edit').modal('show')
+	})
+
+	//编辑商品信息
+	$('.modal-edit-btn').click(function() {
+		//分类id,  分类名称   分类图片  分类上下状态
+		var id = $(this).data('id')
+		var inputFile=$('.modal-edit [name=img]').val()
+		var formdata = null
+		//有图片就所以都传，没有图片就只传名字和上线状态
+		if(inputFile){
+			var form = document.querySelector('.form-edit')
+			formdata = new FormData(form)
+		}else{
+			formdata = new FormData(form)
+			formdata.append('name',$('.modal-edit [name=name]').val())
+			formdata.append('status',$('.modal-edit [name=status]').val())
+		}
+		formdata.append('id', id)
+		$.ajax({
+			url: api + 'editClass',
+			type: 'post',
+			data: formdata,
+			processData: false,
+			contentType: false,
+			success: function(res) {
+				if(res.status==200){
+					$('.modal-edit').modal('hide')
+					$('.modal-ts').modal('show')
+					getClassList();
+				}
+			}
+		})
+	})
+
+	//点击上下先状态  改变分类的显示  .class-status
+	$('.container-table').on('click','.class-status',function(){
+		//数据库需要的是  从当前状态变成什么状态
+		//改变的状态的id
+		var status=$(this).data('status')
+		var id=$(this).data('id')
+		status=status==1?0:1, 
+		//请求后台改变数据的数据
+		$.ajax({
+			url:api+'changeClassStatus',
+			type:'get',
+			data:{
+				id,
+				status
+			},
+			dataType:'json',
+			success:function(res){
+				if(res.status==200){
+					//window.location.href = window.location.href
+					getClassList();
+				}
+			}
+		})
+	})
+
+	//删除分类
+	$('.container-table').on('click','.class-delete',function(){
+		var id=$(this).data('id')
+		
+		//请求后台  后台从数据库删除  刷新前端界面
+		$.ajax({
+			url: api + 'deletaClass',
+			type: 'get',
+			data:{
+				id
+			},
+			dataType:'json',
+			success: function(res) {
+				if(res.status==200){
+					window.location.href = window.location.href
+				}
+			}
+		})
+	})
+
+	//点击新增分类显示弹窗
+	$('.modal-show').click(function() {
+		$('.modal-add').modal('show')
+	})
+	//隐藏弹窗回调
+	$('.modal-add').on('hidden.bs.modal', function() {
+		document.querySelector('form').reset()
+		$('.upload-img').hide()
+	})
+	//图片上传
+	$('.img-upload').change(function() {
+		if (this.files[0]) {
+			var fileReader = new FileReader()
+			fileReader.readAsDataURL(this.files[0])
+			fileReader.onload = function(event) {
+				$('.upload-img').attr('src', event.target.result).show()
+			}
+		}
+	})
+	//新增分类
+	$('.modal-submit').click(function() {
+		//获取js对象
+		var form = document.querySelector('form')
+		var formdata = new FormData(form)
+		$.ajax({
+			url: 'http://localhost:3000/addDemo',
+			type: 'post',
+			dataType: 'json',
+			data: formdata,
+			processData: false,
+			contentType: false,
+			success: function(res) {
+				console.log(res)
+				if (res.status == 200) {
+					//隐藏弹窗
+					$('.modal-add').modal('hide')
+					$('.modal-xz').modal('show')
+					getClassList();
+				}
+			}
+		})
+	})
+
+	//获取分类数据
+	function getClassList() {
+		$.ajax({
+			url: api + 'getClassList',
+			dataType: 'json',
+			//为了做分页效果
+			data: {
+				current,
+				pageSize
+			},
+			success: function(res) {
+				classList = res.list;
+				//获取当前有多少页    res.total总条数  / pageSize 页面总页数  向上取整
+				total = Math.ceil(res.total / pageSize)
+				//页面条数渲染
+				//把之前的页面删掉
+				$('.page-index').remove()
+				var PageHtml = ''
+				for (var i = 0; i < total; i++) {
+					//把页面往翻页的地方放
+					PageHtml +=
+						`
+					<li data-index="${i+1}" class="page-index ${current == (i+1)? 'active' : ''}"><a>${i+1}</a></li>
+					`
+				}
+
+				//找到翻页的第一个li  将数据插入到最后
+				$('.pagination li:eq(0)').after(PageHtml)
+
+				var html =''
+				$.each(res.list, function(index, item) {
+					html +=
+						`
+		
+					<tr>
+						<td>${item.class_name ? item.class_name : ''}</td>
+						<td>
+							<img src="${api+item.img}">
+						</td>
+						<td>
+						<a data-id="${item.id}" data-status="${item.class_status}"
+						class="class-status">${item.class_status==1 ?'已上线':'已下线'}</a>
+						</td>
+						<td>
+							<a data-id='${item.id}' class='edit'>编辑</a>
+							<a>详情</a>
+							<a data-id="${item.id}" class="class-delete">删除</a>
+						</td>
+					</tr>
+		`
+				})
+				html += '</table>'
+				$('tbody').html(html)
+			}
+		})
+	}
+
+</script>

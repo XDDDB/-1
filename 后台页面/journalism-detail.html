@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/detail.css" />
+	</head>
+	<body>
+		<div class="header"></div>
+		<div class="container-fluid">
+			<ul class="container-left">
+				<div class="container-left-a"></div>
+				<a href="demo.html">
+					<li class="list">分类管理</li>
+				</a>
+				<a href="goods.html">
+					<li class="list ">商品管理</li>
+				</a>
+				<a href="dingdan.html">
+					<li class="list">订单管理</li>
+				</a>
+				<a href="user.html">
+					<li class="list ">会员管理</li>
+				</a>
+				<a href="journalism.html">
+					<li class="list active">新闻管理</li>
+				</a>
+			</ul>
+			<div class="container-right">
+				<div class="detail-content">
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/html" id="journalismHtml">
+	<div></div>
+		<div class = "row">
+			<span class = "col-sm-3 col-lg-2 text-right">新闻标题:</span> 
+			<div class = "col-sm-7" >{{title}}</div> 
+		</div>
+		
+		<div class = "row detail-list" >
+			<span class = "col-sm-3 col-lg-2 text-right" >更新时间:</span> 
+			<div class = "col-sm-7">{{updatetime ? updatetime : createTime}}</div> 
+		</div>
+
+		<div class = "row detail-list" >
+			<span class = "col-sm-3 col-lg-2 text-right" >新闻作者:</span> 
+			<div class = "col-sm-7" >{{author}}</div> 
+		</div>
+		
+		<div class = "row detail-list" >
+			<span class = "col-sm-3 col-lg-2 text-right" >新闻内容:</span> 
+			<div class = "col-sm-7" >{{content}}</div> 
+		</div>
+
+
+</script>
+
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var id = getQueryString('id')
+	var index = 0,
+		imglist = []
+
+
+
+	$('.preview-box .close').on('click', function() {
+		$('.preview-box').hide() 
+	})
+
+	$.ajax({
+		url: api + 'getDetailJournalism',
+		type: 'post',
+		data: {
+			id
+		},
+		dataType: 'json',
+		success: function(res) {
+			if (res.status == 200) {
+				var journalismInfo = res.journalism
+				journalismInfo.api = api
+				var html = template('journalismHtml', journalismInfo)
+				$('.detail-content').html(html)
+			}
+		},
+	})
+
+	
+</script>
