@@ -69,7 +69,7 @@ var getOrder_management=function(req,res){
     var pageSize=req.query.pageSize || req.body.pageSize || 10
 
     //limit 从第几条数据开始 ，长度  limit (currentPage-1)*pageSize,pageSize
-    var sql=`SELECT g.id id,g.name NAME, g.price price, g.goodsImg goodsImg,s.quantity quantity, s.status status ,s.account account,s.order_id order_id,
+    var sql=`SELECT g.id id,g.name NAME, g.price price, g.goodsImg goodsImg,s.quantity quantity, s.status status ,s.time time,s.account account,s.order_id order_id,
     s.consignee consignee, s.region region,s.detailed_address detailed_address,s.phone phone,s.tel tel,s.leave_word leave_word,s.freight freight
     FROM commodity_details g RIGHT JOIN order_management s ON g.id = s.id   
              `
